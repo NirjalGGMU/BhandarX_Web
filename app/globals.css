@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f5f6fa;
+  --foreground: #1f2937;
+
+  --primary: #3949ab;
+  --primary-dark: #1e3a8a;
+  --card: #ffffff;
+}
+
+[data-theme="dark"] {
+  --background: #0f172a;
+  --foreground: #e5e7eb;
+  --card: #020617;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Inter, sans-serif;
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}

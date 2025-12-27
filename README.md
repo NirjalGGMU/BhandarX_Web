@@ -1,2 +1,1 @@
-# BhandarX
-Web project 
+# BhandarX Web
