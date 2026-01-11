@@ -1,3 +1,5 @@
+// app/(public)/register/components/RegisterForm.tsx
+
 "use client";
 
 import { useForm } from "react-hook-form";

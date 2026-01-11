@@ -1,3 +1,4 @@
+// app/(public)/register/page.tsx
 
 import RegisterForm from "./components/RegisterForm";
 import Link from "next/link";
