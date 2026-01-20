@@ -6,6 +6,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, LoginData } from "@/app/schemas/auth.schema";
 import { useRouter } from "next/navigation";
+import { handleLogin } from "@/lib/action/auth-action";
+import { startTransition } from "react";
+import toast from "react-hot-toast";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -13,13 +16,27 @@ export default function LoginForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = () => {
-    router.push("/auth/dashboard");
+   const onSubmit = async (data: LoginData) => {
+    try {
+      const res = await handleLogin(data);
+      if (!res.success) {
+        throw new Error(res.message || "Login Failed");
+      }
+
+      toast.success("Login success");
+
+      startTransition(() => {
+        router.push("/auth/dashboard");
+      });
+    } catch (error: Error | any) {
+      // setError(error.message || "Login Failed");
+      toast.error(error.message);
+    }
   };
 
   return (

@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema, RegisterData } from "@/app/schemas/auth.schema";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { startTransition } from "react";
 
 export default function RegisterForm() {
   const router = useRouter();
@@ -17,27 +18,30 @@ export default function RegisterForm() {
     formState: { errors, isSubmitting },
   } = useForm<RegisterData>({
     resolver: zodResolver(registerSchema),
+    mode: "onSubmit",
   });
 
-  const onSubmit = (data: RegisterData) => {
-    console.log("Registration Data:", data);
-    // Simulate API call and redirect to dashboard
-    router.push("/auth/dashboard");
+  const submit = async (values: RegisterData) => {
+    startTransition(async () => {
+      router.push("/login");
+    });
+    console.log("register", values);
   };
 
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <form onSubmit={handleSubmit(submit)} className="space-y-4">
       {/* Full Name Field */}
       <div>
         <label className="block text-sm font-medium mb-1">Full Name</label>
         <input
-          {...register("name")}
+          {...register("username")}
           placeholder="John Doe"
           className={`w-full p-3 border rounded-lg bg-transparent focus:ring-2 focus:ring-indigo-500 outline-none transition-all ${
-            errors.name ? "border-red-500" : "border-gray-300 dark:border-slate-700"
+            errors.username ? "border-red-500" : "border-gray-300 dark:border-slate-700"
           }`}
         />
-        {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
+        {errors.username && <p className="text-red-500 text-xs mt-1">{errors.username.message}</p>}
       </div>
 
       {/* Email Field */}
