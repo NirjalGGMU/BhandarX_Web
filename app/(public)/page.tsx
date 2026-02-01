@@ -1,103 +1,50 @@
-// app/(public)/page.tsx
-
-
 import Link from "next/link";
 
-export default function LandingPage() {
+export default function HomePage() {
   return (
-    <div className="space-y-24 pb-20">
-      {/* --- HERO SECTION --- */}
-      <section className="flex flex-col items-center text-center pt-10 md:pt-20 px-4">
-        <div className="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wide text-indigo-600 uppercase bg-indigo-50 dark:bg-indigo-900/30 rounded-full">
-          Inventory Management Simplified
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-6xl">
+        {/* Welcome Hero */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-6">
+            Welcome To BhandarX! 🎉
+          </h1>
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
+            Register now for efficient inventory management. Here's your overview.
+          </p>
         </div>
-        <h1 className="max-w-4xl text-5xl md:text-7xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-          Control your stock with <span className="text-indigo-600">BhandarX</span>
-        </h1>
-        <p className="max-w-2xl mt-6 text-lg md:text-xl text-gray-600 dark:text-gray-400">
-          A powerful, intuitive, and real-time inventory system designed to help businesses 
-          manage their warehouses, track orders, and grow efficiently.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 mt-10">
+
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+          <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl shadow-2xl p-10 text-white text-center hover:scale-105 transition-transform">
+            <h3 className="text-5xl font-bold">42</h3>
+            <p className="text-xl mt-4 opacity-90">Stock Movements This Month</p>
+          </div>
+          <div className="bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-3xl shadow-2xl p-10 text-white text-center hover:scale-105 transition-transform">
+            <h3 className="text-5xl font-bold">18</h3>
+            <p className="text-xl mt-4 opacity-90">Top Products</p>
+          </div>
+          <div className="bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-3xl shadow-2xl p-10 text-white text-center hover:scale-105 transition-transform">
+            <h3 className="text-5xl font-bold">95%</h3>
+            <p className="text-xl mt-4 opacity-90">Efficiency Rate</p>
+          </div>
+        </div>
+
+        <div className="bg-card rounded-3xl shadow-xl p-10 border border-border">
+          <h2 className="text-3xl font-bold mb-8 text-center">Recent Activity</h2>
+          <p className="text-center text-muted-foreground text-lg">(Dummy content – your recent stock updates would show here in a real app!)</p>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-16">
           <Link
             href="/register"
-            className="px-8 py-4 text-lg font-bold text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 dark:shadow-none"
+            className="inline-block px-10 py-5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-bold text-lg hover:opacity-90 transition shadow-xl"
           >
-            Create Free Account
-          </Link>
-          <Link
-            href="/about"
-            className="px-8 py-4 text-lg font-bold text-gray-700 dark:text-gray-200 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-700 transition-all"
-          >
-            How it Works
+            Get Started
           </Link>
         </div>
-      </section>
-
-      {/* --- FEATURES SECTION --- */}
-      <section className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Built for Efficiency</h2>
-          <p className="text-gray-500 mt-2">Everything you need to manage your store in one place</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Feature 1 */}
-          <div className="p-8 bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/50 rounded-lg flex items-center justify-center text-2xl mb-6">
-              📊
-            </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Real-time Analytics</h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              Get instant insights into your stock levels, sales trends, and warehouse performance.
-            </p>
-          </div>
-
-          {/* Feature 2 */}
-          <div className="p-8 bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/50 rounded-lg flex items-center justify-center text-2xl mb-6">
-              🔔
-            </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Low Stock Alerts</h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              Never run out of items. Receive automated notifications when it's time to reorder.
-            </p>
-          </div>
-
-          {/* Feature 3 */}
-          <div className="p-8 bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/50 rounded-lg flex items-center justify-center text-2xl mb-6">
-              📱
-            </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Multi-Device Sync</h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              Access your data from anywhere. Seamlessly sync between your mobile app and web dashboard.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* --- STATS SECTION --- */}
-      <section className="bg-indigo-600 rounded-3xl p-12 text-center text-white mx-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div>
-            <div className="text-4xl font-bold">10k+</div>
-            <div className="text-indigo-100 text-sm">Active Users</div>
-          </div>
-          <div>
-            <div className="text-4xl font-bold">500+</div>
-            <div className="text-indigo-100 text-sm">Warehouses</div>
-          </div>
-          <div>
-            <div className="text-4xl font-bold">99.9%</div>
-            <div className="text-indigo-100 text-sm">Uptime</div>
-          </div>
-          <div>
-            <div className="text-4xl font-bold">24/7</div>
-            <div className="text-indigo-100 text-sm">Support</div>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
   );
 }
