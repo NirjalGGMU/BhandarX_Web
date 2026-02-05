@@ -1,0 +1,67 @@
+// app/lib/api/admin/users.ts
+
+
+
+import { API } from "../endpoint";
+import axios from "../axios";
+
+export const createUser = async (userData: any) => {
+    try {
+        const response = await axios.post(
+            API.ADMIN.USER.CREATE,
+            userData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            }
+        );
+        return response.data;
+    } catch (error: Error | any) {
+        throw new Error(error.response?.data?.message || error.message || 'Create user failed');
+    }
+};
+
+export const getAllUsers = async () => {
+    try {
+        const response = await axios.get(API.ADMIN.USER.GET_ALL);
+        return response.data;
+    } catch (error: Error | any) {
+        throw new Error(error.response?.data?.message || error.message || 'Get all users failed');
+    }
+};
+
+export const getUserById = async (id: string) => {
+    try {
+        const response = await axios.get(API.ADMIN.USER.GET_BY_ID(id));
+        return response.data;
+    } catch (error: Error | any) {
+        throw new Error(error.response?.data?.message || error.message || 'Get user failed');
+    }
+};
+
+export const updateUser = async (id: string, userData: any) => {
+    try {
+        const response = await axios.put(
+            API.ADMIN.USER.UPDATE(id),
+            userData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            }
+        );
+        return response.data;
+    } catch (error: Error | any) {
+        throw new Error(error.response?.data?.message || error.message || 'Update user failed');
+    }
+};
+
+export const deleteUser = async (id: string) => {
+    try {
+        const response = await axios.delete(API.ADMIN.USER.DELETE(id));
+        return response.data;
+    } catch (error: Error | any) {
+        throw new Error(error.response?.data?.message || error.message || 'Delete user failed');
+    }
+};
