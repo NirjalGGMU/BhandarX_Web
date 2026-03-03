@@ -1,0 +1,6 @@
+Name,SKU,Barcode,Category,Supplier,Purchase Price,Selling Price,Stock Quantity,Min Stock Level,Unit,Location,Description
+MacBook Pro M3,APL-MBP-M3,190199123456,Electronics,Apple Inc,1200.00,1599.00,10,2,piece,Warehouse A,14-inch MacBook Pro with M3 chip
+iPhone 15 Pro,APL-IP15P-128,190199123457,Electronics,Apple Inc,800.00,999.00,25,5,piece,Warehouse A,Titanium design with A17 Pro chip
+Sony WH-1000XM5,SNY-WH1k-M5,454873613256,Audio,Sony,250.00,349.00,15,3,piece,Warehouse B,Industry leading noise canceling headphones
+Samsung 32" Monitor,SAM-32MON-4K,880609456789,Electronics,Samsung,200.00,299.00,0,5,piece,Warehouse B,4K Ultra HD Smart Monitor
+Logitech MX Master 3S,LOG-MXM3S,097855123456,Accessories,Logitech,60.00,99.00,40,10,piece,Warehouse A,Performance Wireless Mouse
