@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+/* --- Keyframes --------------------------------------------------------- */
+@keyframes fadeUp   { from { opacity:0; transform:translateY(10px) } to { opacity:1; transform:translateY(0) } }
+@keyframes scaleIn  { from { opacity:0; transform:scale(.95) }       to { opacity:1; transform:scale(1) } }
+@keyframes shimmer  { to   { background-position:200% center } }
+@keyframes pulseDot { 0%,100% { opacity:1; transform:scale(1) } 50% { opacity:.5; transform:scale(.85) } }
+
+/* --- Base -------------------------------------------------------------- */
+@layer base {
+  *, *::before, *::after { box-sizing:border-box }
+  html { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    background: #f8fafc;
+    color: #0f172a;
+  }
+  .dark body { background: #020617; color: #e2e8f0 }
+
+  ::-webkit-scrollbar       { width: 5px; height: 5px }
+  ::-webkit-scrollbar-track { background: transparent }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px }
+  ::-webkit-scrollbar-thumb:hover { background: #94a3b8 }
+  .dark ::-webkit-scrollbar-thumb { background: #475569 }
+}
+
+/* --- Components -------------------------------------------------------- */
+@layer components {
+
+  /*
+   * DESIGN SYSTEM PRIMITIVES
+   * .card           — base white surface. Apply to every major container.
+   * .hover-lift     — stack on .card to make tiles interactive.
+   * .btn-primary    — the one green CTA button.
+   * .section-header — flex row (title left, action right) with bottom gap.
+   * .page-title     — H1 with optional gradient on <span class="accent">.
+   */
+
+  .card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px -1px rgba(0,0,0,.06), 0 1px 4px -1px rgba(0,0,0,.04);
+  }
+  .dark .card { background: #0f172a; border-color: #1e293b }
+
+  .hover-lift { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; cursor: pointer }
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -4px rgba(22,163,74,.14), 0 4px 8px -2px rgba(22,163,74,.08);
+    border-color: #bbf7d0;
+  }
+  .dark .hover-lift:hover { border-color: #14532d }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .625rem 1rem;
+    background: #16a34a; color: white;
+    font-size: .875rem; font-weight: 600;
+    border: none; border-radius: .75rem;
+    cursor: pointer; text-decoration: none;
+    transition: all .15s ease;
+    box-shadow: 0 4px 12px rgba(22,163,74,.25);
+  }
+  .btn-primary:hover         { background: #15803d; box-shadow: 0 6px 18px rgba(22,163,74,.35); transform: translateY(-1px) }
+  .btn-primary:active        { transform: scale(.98) }
+  .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(22,163,74,.35) }
+
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem }
+
+  .page-title { font-size: 1.5rem; font-weight: 700; color: #0f172a; letter-spacing: -.02em }
+  .page-title .accent {
+    background: linear-gradient(135deg, #16a34a 0%, #4ade80 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .dark .page-title { color: #f1f5f9 }
+
+  /* BADGES */
+  .badge         { display: inline-flex; align-items: center; padding: .125rem .625rem; border-radius: 99px; font-size: .75rem; font-weight: 500 }
+  .badge-success { background: #dcfce7; color: #166534 }
+  .badge-warning { background: #fef9c3; color: #854d0e }
+  .badge-danger  { background: #fee2e2; color: #991b1b }
+  .badge-info    { background: #dbeafe; color: #1e40af }
+  .badge-muted   { background: #f1f5f9; color: #64748b }
+  .dark .badge-success { background: #14532d; color: #86efac }
+  .dark .badge-warning { background: #451a03; color: #fcd34d }
+  .dark .badge-danger  { background: #450a0a; color: #fca5a5 }
+  .dark .badge-info    { background: #1e3a5f; color: #93c5fd }
+  .dark .badge-muted   { background: #1e293b; color: #94a3b8 }
+
+  /* SKELETON */
+  .skeleton {
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s linear infinite;
+    border-radius: .625rem;
+  }
+  .dark .skeleton { background: linear-gradient(90deg,#1e293b 25%,#283548 50%,#1e293b 75%); background-size: 200% 100% }
+
+  /* INPUT */
+  .input-field {
+    width: 100%; padding: .5625rem .75rem;
+    border: 1px solid #e2e8f0; border-radius: .625rem;
+    background: white; color: #0f172a;
+    font-size: .875rem; font-family: inherit;
+    transition: border-color .15s, box-shadow .15s; outline: none;
+  }
+  .input-field:focus        { border-color: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,.12) }
+  .input-field::placeholder { color: #94a3b8 }
+  .dark .input-field        { background: #0f172a; border-color: #334155; color: #e2e8f0 }
+
+  /* LEGACY COMPAT — Card.jsx / StatCard.jsx / Button.jsx */
+  .card-base { background: white; border: 1px solid #e2e8f0; border-radius: .75rem; box-shadow: 0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.03) }
+  .dark .card-base { background: #0f172a; border-color: #1e293b }
+  .card-hover       { transition: box-shadow .2s ease, border-color .2s ease, transform .15s ease; cursor: pointer }
+  .card-hover:hover { box-shadow: 0 4px 12px rgba(0,0,0,.08); border-color: #bbf7d0; transform: translateY(-1px) }
+  .card-stat        { position: relative; overflow: hidden }
+  .card-stat::after { content: ""; position: absolute; top: 0; right: 0; width: 80px; height: 80px; background: radial-gradient(circle at top right,rgba(22,163,74,.06),transparent 70%); pointer-events: none }
+  .btn-primary-glow       { box-shadow: 0 4px 12px rgba(22,163,74,.20); transition: box-shadow .2s ease,transform .15s ease }
+  .btn-primary-glow:hover { box-shadow: 0 6px 18px rgba(22,163,74,.30); transform: translateY(-1px) }
+
+  .product-thumb { width: 40px; height: 40px; border-radius: .625rem; background: #f8fafc; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden }
+
+  .table-premium                        { width: 100%; border-collapse: collapse }
+  .table-premium th                     { background: #f9fafb; color: #6b7280; font-size: .71875rem; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; padding: .75rem 1rem; border-bottom: 1px solid #e5e7eb; text-align: left; white-space: nowrap }
+  .table-premium td                     { padding: .8125rem 1rem; border-bottom: 1px solid #f3f4f6; font-size: .875rem; vertical-align: middle }
+  .table-premium tbody tr               { transition: background .12s ease }
+  .table-premium tbody tr:hover td      { background: #f0fdf4 }
+  .table-premium tbody tr:last-child td { border-bottom: none }
+  .dark .table-premium th               { background: #0f172a; color: #64748b; border-color: #1e293b }
+  .dark .table-premium td               { border-color: #1e293b; color: #e2e8f0 }
+  .dark .table-premium tbody tr:hover td { background: rgba(20,83,45,.1) }
+
+  .error-state-card { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem 1.5rem; background: white; border: 1px solid #e2e8f0; border-radius: .75rem; box-shadow: 0 1px 3px rgba(0,0,0,.05) }
+  .dark .error-state-card { background: #0f172a; border-color: #1e293b }
+
+  /* UTILITIES */
+  .no-scrollbar                    { -ms-overflow-style: none; scrollbar-width: none }
+  .no-scrollbar::-webkit-scrollbar { display: none }
+  .animate-fade-in-up { animation: fadeUp  .3s ease-out forwards }
+  .animate-fade-in    { animation: scaleIn .2s ease-out forwards }
+  .animate-fade-up    { animation: fadeUp  .35s cubic-bezier(.16,1,.3,1) both }
+  .animate-scale-in   { animation: scaleIn .25s cubic-bezier(.16,1,.3,1) both }
+  .animate-pulse-dot  { animation: pulseDot 2s ease-in-out infinite }
+  .animate-shimmer    { animation: shimmer  1.6s linear infinite }
+
+  /* Recharts dark tooltip */
+  .recharts-default-tooltip { border-radius:.5rem !important; border:none !important; background:#111827 !important; color:#e5e7eb !important; box-shadow:0 8px 24px rgba(0,0,0,.2) !important; font-size:.75rem !important }
+}
